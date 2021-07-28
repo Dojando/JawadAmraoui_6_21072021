@@ -52,6 +52,11 @@ body {
   margin-left: 25px;
 }
 
+.body-header-img-profil a {
+  display: block;
+  height: 50px;
+}
+
 .header-nav ul{
   list-style-type: none;
   display: flex;
