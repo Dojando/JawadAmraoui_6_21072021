@@ -27,7 +27,6 @@ html {
   width: 100%;
   display: flex;
   justify-content: center;
-  border: solid 1px red;
 }
 
 /* mise en forme page d'accueil */
@@ -36,7 +35,6 @@ body {
   width: 90%;
   margin: 42px 100px 90px 100px;
   position: relative;
-  border: solid black 1px;  
 }
 
 /* mise en forme header */
@@ -106,15 +104,22 @@ body {
 }
 
 /* mise en forme des blocs photopgraphe */
-.photographe-ligne1, .photographe-ligne2 {
+.photographe-section {
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
 }
 
 /* mise en forme des infos dans les blocs photographe */
 .bloc-photographe {
-  width: 280px;
+  width: 331px;
   margin-bottom: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.lien-photographe {
   display: flex;
   flex-direction: column;
   align-items: center;
