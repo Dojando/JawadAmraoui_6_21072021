@@ -19,7 +19,42 @@
   </header>
 
   <main class="body-main" role=”main”>
-<p>test</p>
+    <section class="photographe-details">
+      <div class="photographe-details-texte">
+        <h1 class="photographe-details-nom">Mimi Keel</h1>
+        <p class="photographe-details-lieu" lang="en">London, UK</p>
+        <p class="photographe-details-slogan">Voir le beau dans le quotidien</p>
+        <div class="header-nav">
+          <ul>
+            <li class="header-navigation-item">
+              <span class="sr-only" lang="en">Tag travel</span>
+              <a href="#" lang="en">#travel</a>
+            </li>
+            <li class="header-navigation-item">
+              <span class="sr-only" lang="en">Tag portraits</span>
+              <a href="#" lang="en">#portraits</a>
+            </li>
+          </ul>
+        </div>        
+      </div>
+      <div class="photographe-details-contact">
+        <button class="button-contact">Contactez-moi</button>
+      </div>
+      <div class="photographe-details-img">
+        <img class="photographe-img" src="img/preview_mimikeel.png" alt="">
+      </div>
+    </section>
+
+    <section>
+      <div class="photographe-dropdown">
+        <label for="tri-elements" aria-labelledby="tri-elements">Trier par</label>
+        <select name="ordre par" id="tri-elements">
+          <option value="popularité" >Popularité</option>
+          <option value="date">Date</option>
+          <option value="titre">Titre</option>
+        </select>
+      </div>
+    </section>
   </main>
 </body>
 </html>

@@ -22,7 +22,7 @@ a {
 }
 
 html {
-  background: #E5E5E5;
+  background-color: #FFFFFF;
   font-family: DM Sans;
   width: 100%;
   display: flex;
@@ -161,3 +161,68 @@ body {
   font-size: 9px;
   color: #757575;
 }
+
+/* mise en forme de la page de photographe */
+
+.photographe-details {
+  background-color: #FAFAFA;
+  padding: 50px 20px;
+  display: flex;
+}
+
+.photographe-details-texte {
+  margin-right: 60px;
+}
+
+.photographe-details-texte ul {
+  justify-content: flex-start;
+}
+
+.photographe-details-nom {
+  font-weight: normal;
+  font-size: 64px;
+  color: #D3573C;
+}
+
+.photographe-details-lieu {
+  margin-bottom: 15px;
+  font-weight: normal;
+  font-size: 24px;
+  color: #901C1C;
+}
+
+.photographe-details-slogan {
+  margin-bottom: 10px;
+  font-weight: normal;
+  font-size: 18px;
+  color: #525252;
+}
+
+.button-contact {
+  height: 69px;
+  width: 170px;
+  background: #911C1C;
+  border-radius: 5px;
+  color: #FFFFFF;
+  font-weight: bold;
+  font-size: 18px;
+  border: 0px solid transparent;
+}
+
+.button-contact:hover, .button-contact:focus {
+  transition: 100ms;
+  background: #DB8876;
+  color: #000000;
+}
+
+.photographe-details-img {
+  margin-left: auto;
+}
+
+.photographe-dropdown label {
+  font-weight: bold;
+  font-size: 18px;
+  color: #000000;
+}
+
+
