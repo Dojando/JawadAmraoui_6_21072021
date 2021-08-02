@@ -167,6 +167,7 @@ body {
 .photographe-details {
   background-color: #FAFAFA;
   padding: 50px 20px;
+  margin-bottom: 20px;
   display: flex;
 }
 
@@ -219,10 +220,66 @@ body {
   margin-left: auto;
 }
 
+.photographe-dropdown {
+  display: flex;
+}
+
 .photographe-dropdown label {
   font-weight: bold;
   font-size: 18px;
   color: #000000;
+  margin: 10px 20px 0 0;
+}
+
+.custom_dropdown {
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 69px;
+  width: 170px;
+  border-radius: 5px;
+  background: #911C1C;
+  font-size: 18px;
+  color: #FFFFFF;
+  padding-left: 20px;
+}
+
+.arrow {
+  position: absolute;
+  right: 10px;
+}
+
+.dropdown_options {
+  display: none;
+  margin-top: 1px;
+  flex-direction: column;
+  background: #911C1C;
+  width: 170px;
+  border-radius: 5px;
+  font-size: 18px;
+  color: #FFFFFF;
+  padding: 15px 0 15px 0;
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  margin-left: 20px;
+}
+
+.option1:after {
+  content: "";
+  border-top: 1px white solid;
+  margin: 14px 0 14px -10px;
+  width: 100%;
+}
+
+.option2:after {
+  content: "";
+  border-top: 1px white solid;
+  margin: 14px 0 14px -10px;
+  width: 100%;
 }
 
 

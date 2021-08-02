@@ -6,6 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans">
   <link rel="stylesheet" href="css/style.css">
+  <script defer src="js/app.js"></script>
   <title>FishEye</title>
 </head>
 
@@ -48,11 +49,18 @@
     <section>
       <div class="photographe-dropdown">
         <label for="tri-elements" aria-labelledby="tri-elements">Trier par</label>
-        <select name="ordre par" id="tri-elements">
-          <option value="popularité" >Popularité</option>
-          <option value="date">Date</option>
-          <option value="titre">Titre</option>
-        </select>
+
+        <div class="dropdown_box">
+          <div id="custom_dropdown" class="custom_dropdown">
+            <span>Popularité</span>
+            <img id="arrow" class="arrow" src="img/arrow_closed.png" alt="" aria-hidden="true">
+          </div>
+          <div id="dropdown_options" class="dropdown_options">
+              <span class="options option1 selected" data-value="popularité">Popularité</span>
+              <span class="options option2" data-value="date">Date</span>
+              <span class="options option3" data-value="titre">Titre</span>
+          </div>
+        </div>
       </div>
     </section>
   </main>
