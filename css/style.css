@@ -21,6 +21,10 @@ a {
   text-decoration: none;
 }
 
+ul {
+  list-style-type: none;
+}
+
 html {
   background-color: #FFFFFF;
   font-family: DM Sans;
@@ -58,7 +62,6 @@ body {
 }
 
 .header-nav ul{
-  list-style-type: none;
   display: flex;
   justify-content: center;
 }
@@ -164,6 +167,7 @@ body {
 
 /* mise en forme de la page de photographe */
 
+  /* mise en forme du bloc d'infos du photographe */
 .photographe-details {
   background-color: #FAFAFA;
   padding: 50px 20px;
@@ -220,6 +224,33 @@ body {
   margin-left: auto;
 }
 
+/* mise en forme des infos de nbr de likes total et de prix */
+
+.likes_prix {
+  position: fixed;
+  bottom: 0px;
+  right: 80px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #DB8876;
+  height: 68px;
+  width: 376px;
+  border-radius: 5px 5px 0 0;
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.total_likes {
+  display: flex;
+}
+
+.total_likes p {
+  margin-right: 10px;
+}
+
+/* Mise en forme du dropdown de filtre */
+
 .photographe-dropdown {
   display: flex;
 }
@@ -252,6 +283,7 @@ body {
 
 .dropdown_options {
   display: none;
+  position: absolute;
   margin-top: 1px;
   flex-direction: column;
   background: #911C1C;
@@ -268,18 +300,57 @@ body {
   margin-left: 20px;
 }
 
-.option1:after {
+.option1:after, .option2:after {
   content: "";
   border-top: 1px white solid;
   margin: 14px 0 14px -10px;
   width: 100%;
 }
 
-.option2:after {
-  content: "";
-  border-top: 1px white solid;
-  margin: 14px 0 14px -10px;
-  width: 100%;
+/* mise en forme des media dans les portfolio des photographe */
+
+.portfolio_photographe {
+  margin-top: 40px;
 }
 
+.portfolio_photographe ul {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.portfolio_photographe li {
+  margin: 0 5px 20px 5px;
+}
+
+.portfolio_photographe a img, .portfolio_photographe a video {
+  width: 350px;
+  height: 351px;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+/* mise en forme des infos des medias dans la page photographe */
+
+.media_detail {
+  display: flex;
+  justify-content: space-between;
+  font-weight: normal;
+  font-size: 24px;
+  color: #911C1C;
+}
+
+.media_prix_likes, .media_likes {
+  display: flex;
+  font-weight: bold;
+}
+
+.media_likes {
+  margin-left: 30px;
+}
+
+.media_likes p {
+  margin-right: 5px;
+  line-height: 30px;
+}
 
