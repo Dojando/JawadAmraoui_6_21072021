@@ -55,14 +55,7 @@ body {
 }
 
 .body-header-img a {
-  display: block;
-  height: 50px;
   margin-left: 25px;
-}
-
-.body-header-img-profil a {
-  display: block;
-  height: 50px;
 }
 
 .header-nav ul{
@@ -359,3 +352,111 @@ body {
   line-height: 30px;
 }
 
+
+/* design responsive */
+
+  /* design reponsive de l'index */
+@media all and (max-width: 1360px) {
+  .body-header-img img {
+    width: 150px;
+    height: 37.5px;
+  }
+
+  .main-header h1 {
+    font-size: 17px;
+    top: 10px;
+  }
+
+  .h1-placeholder {
+    width: 180px;
+  }
+
+  .body-header .header-nav {
+    position: absolute;
+    top: 70px;
+    width: 100%;
+  }
+
+  .header-nav ul {
+    flex-wrap: wrap;
+  }
+}
+
+@media all and (max-width: 879px) {
+  .body-index {
+    margin: 42px 0px 90px 0px;
+  }
+
+  .main-header h1 {
+    margin-right: 0px;
+  }
+
+  .body-header-img a {
+    margin-left: 0px;
+  }
+
+  .photographe-section {
+    justify-content: center;
+  }
+}
+
+
+  /* design reponsive de la page photographe */
+@media all and (max-width: 1297px) {
+  .portfolio_photographe ul {
+    justify-content: space-around;
+  }
+}
+
+@media all and (max-width: 970px) {
+  .button-contact {
+    position: fixed;
+    bottom: 30px;
+    width: 170px;
+    height: 35px;
+    font-weight: normal;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
+
+  .likes_prix {
+    display: none;
+  }
+}
+
+@media all and (max-width: 800px) {
+  .body-photographe {
+    margin: 42px 0px 90px 0px;
+  }
+
+  .photographe-details {
+    background-color: #FFFFFF;
+  }
+}
+
+@media all and (max-width: 665px) {
+  .photographe-dropdown {
+    display: none;
+  }
+
+  .photographe-img {
+    width: 130px;
+    height: 130px;
+  }
+
+  .photographe-details {
+    padding: 0px 0px;
+  }
+
+  .photographe-details-nom {
+    font-size: 30px;
+  }
+
+  .photographe-details-lieu {
+    font-size: 20px;
+  }
+
+  .photographe-details-slogan {
+    font-size: 15px;
+  }
+}
