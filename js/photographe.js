@@ -8,9 +8,11 @@ custom_dropdown.addEventListener('click', function(e) {
   if (getComputedStyle(dropdown_options).display == "none") {
     dropdown_options.style.display = "flex";
     arrow.setAttribute('src', 'img/arrow_open.png');
+    custom_dropdown.setAttribute('aria-expanded', 'true');
   }
   else if (getComputedStyle(dropdown_options).display == "flex") {
     dropdown_options.style.display = "none";
     arrow.setAttribute('src', 'img/arrow_closed.png');
+    custom_dropdown.setAttribute('aria-expanded', 'false');
   }
 })

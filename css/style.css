@@ -25,6 +25,10 @@ ul {
   list-style-type: none;
 }
 
+button {
+  border: none;
+}
+
 html {
   background-color: #FFFFFF;
   font-family: DM Sans;
@@ -47,7 +51,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 }
 
 .body-header-img a {
@@ -114,6 +118,7 @@ body {
 /* mise en forme des blocs photopgraphe */
 .photographe-section {
   display: flex;
+  margin-top: 100px;
   justify-content: space-between;
   flex-wrap: wrap;
 }

@@ -6,12 +6,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans">
   <link rel="stylesheet" href="css/style.css">
-  <script defer src="js/app.js"></script>
+  <script defer src="js/photographe.js"></script>
   <title>FishEye</title>
 </head>
 
 <body>
-  <header class="body-header" role=”banner”>
+  <header class="body-header">
     <div class="body-header-img-profil">
       <a href="index.html">
         <img src="img/logo.png" alt="Logo de FishEye - Page d’accueil">
@@ -19,7 +19,7 @@
     </div>
   </header>
 
-  <main class="body-main" role=”main”>
+  <main class="body-main">
     <section class="photographe-details">
       <div class="photographe-details-texte">
         <h1 class="photographe-details-nom">Mimi Keel</h1>
@@ -56,145 +56,143 @@
       <p>300€ / jour</p>
     </aside>
 
-    <section>
-      <div class="photographe-dropdown">
-        <label for="tri-elements" aria-labelledby="tri-elements">Trier par</label>
+    <div class="photographe-dropdown">
+      <label id="ordre-par">Trier par</label>
 
-        <div class="dropdown_box">
-          <div id="custom_dropdown" class="custom_dropdown">
-            <span>Popularité</span>
-            <img id="arrow" class="arrow" src="img/arrow_closed.png" alt="" aria-hidden="true">
-          </div>
-          <div id="dropdown_options" class="dropdown_options">
-              <span class="options option1 selected" data-value="popularité">Popularité</span>
-              <span class="options option2" data-value="date">Date</span>
-              <span class="options option3" data-value="titre">Titre</span>
-          </div>
+      <div class="dropdown_box">
+        <button id="custom_dropdown" class="custom_dropdown" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="ordre-par">
+          <span>Popularité</span>
+          <img id="arrow" class="arrow" src="img/arrow_closed.png" alt="" aria-hidden="true">
+        </button>
+        <div id="dropdown_options" class="dropdown_options">
+            <span role="listbox" class="options option1" data-value="popularité">Popularité</span>
+            <span role="listbox" class="options option2" data-value="date">Date</span>
+            <span role="listbox" class="options option3" data-value="titre">Titre</span>
         </div>
       </div>
-    </section>
+    </div>
 
     <div class="portfolio_photographe">
       <ul>
         <li>
           <a href="#">
-            <img src="FishEye_Photos/Sample Photos/Mimi/Event_PintoWedding.jpg" alt="">
+            <img src="FishEye_Photos/Sample_Photos/Mimi/Event_PintoWedding.jpg" alt="">
           </a>
           <div class="media_detail">
             <p class="media_titre">test test</p>
-            <span class="media_prix_likes">
+            <div class="media_prix_likes">
               <p>45€</p>
-              <span class="media_likes">
+              <div class="media_likes">
                 <p>12</p>
                 <span>
                   <img src="img/likes.png" alt="likes">
                 </span>
-              </span>
-            </span>
+              </div>
+            </div>
           </div>
         </li>
         <li>
           <a href="#">
-            <img src="FishEye_Photos/Sample Photos/Mimi/Event_SeasideWedding.jpg" alt="">
+            <img src="FishEye_Photos/Sample_Photos/Mimi/Event_SeasideWedding.jpg" alt="">
           </a>
           <div class="media_detail">
             <p class="media_titre">test test</p>
-            <span class="media_prix_likes">
+            <div class="media_prix_likes">
               <p>45€</p>
-              <span class="media_likes">
+              <div class="media_likes">
                 <p>12</p>
                 <span>
                   <img src="img/likes.png" alt="likes">
                 </span>
-              </span>
-            </span>
+              </div>
+            </div>
           </div>
         </li>
         <li>
           <a href="#">
-            <img src="FishEye_Photos/Sample Photos/Mimi/Portrait_Background.jpg" alt="">
+            <img src="FishEye_Photos/Sample_Photos/Mimi/Portrait_Background.jpg" alt="">
           </a>
           <div class="media_detail">
             <p class="media_titre">test test</p>
-            <span class="media_prix_likes">
+            <div class="media_prix_likes">
               <p>45€</p>
-              <span class="media_likes">
+              <div class="media_likes">
                 <p>12</p>
                 <span>
                   <img src="img/likes.png" alt="likes">
                 </span>
-              </span>
-            </span>
+              </div>
+            </div>
           </div>
         </li>
         <li>
           <a href="#">
-            <img src="FishEye_Photos/Sample Photos/Mimi/Portrait_Nora.jpg" alt="">
+            <img src="FishEye_Photos/Sample_Photos/Mimi/Portrait_Nora.jpg" alt="">
           </a>
           <div class="media_detail">
             <p class="media_titre">test test</p>
-            <span class="media_prix_likes">
+            <div class="media_prix_likes">
               <p>45€</p>
-              <span class="media_likes">
+              <div class="media_likes">
                 <p>12</p>
                 <span>
                   <img src="img/likes.png" alt="likes">
                 </span>
-              </span>
-            </span>
+              </div>
+            </div>
           </div>
         </li>
         <li>
           <a href="#">
-            <img src="FishEye_Photos/Sample Photos/Mimi/Portrait_Wednesday.jpg" alt="">
+            <img src="FishEye_Photos/Sample_Photos/Mimi/Portrait_Wednesday.jpg" alt="">
           </a>
           <div class="media_detail">
             <p class="media_titre">test test</p>
-            <span class="media_prix_likes">
+            <div class="media_prix_likes">
               <p>45€</p>
-              <span class="media_likes">
+              <div class="media_likes">
                 <p>12</p>
                 <span>
                   <img src="img/likes.png" alt="likes">
                 </span>
-              </span>
-            </span>
+              </div>
+            </div>
           </div>
         </li>
         <li>
           <a href="#">
-            <img src="FishEye_Photos/Sample Photos/Mimi/Event_BenevidesWedding.jpg" alt="">
+            <img src="FishEye_Photos/Sample_Photos/Mimi/Event_BenevidesWedding.jpg" alt="">
           </a>
           <div class="media_detail">
             <p class="media_titre">test test</p>
-            <span class="media_prix_likes">
+            <div class="media_prix_likes">
               <p>45€</p>
-              <span class="media_likes">
+              <div class="media_likes">
                 <p>12</p>
                 <span>
                   <img src="img/likes.png" alt="likes">
                 </span>
-              </span>
-            </span>
+              </div>
+            </div>
           </div>
         </li>
         <li>
           <a href="#">
             <video>
-              <source src="FishEye_Photos/Sample Photos/Mimi/Animals_Wild_Horses_in_the_mountains.mp4" type="video/mp4">
+              <source src="FishEye_Photos/Sample_Photos/Mimi/Animals_Wild_Horses_in_the_mountains.mp4" type="video/mp4">
             </video>
           </a>
           <div class="media_detail">
             <p class="media_titre">test test</p>
-            <span class="media_prix_likes">
+            <div class="media_prix_likes">
               <p>45€</p>
-              <span class="media_likes">
+              <div class="media_likes">
                 <p>12</p>
                 <span>
                   <img src="img/likes.png" alt="likes">
                 </span>
-              </span>
-            </span>
+              </div>
+            </div>
           </div>
         </li>
       </ul>
