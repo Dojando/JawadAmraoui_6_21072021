@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=DM+Sans">
   <link rel="stylesheet" href="css/style.css">
   <script defer src="js/photographe.js"></script>
-  <title>FishEye</title>
+  <title>FishEye - Photographe</title>
 </head>
 
 <body class="body-photographe">
@@ -22,19 +22,12 @@
   <main class="body-main">
     <section class="photographe-details">
       <div class="photographe-details-texte">
-        <h1 class="photographe-details-nom">Mimi Keel</h1>
-        <p class="photographe-details-lieu" lang="en">London, UK</p>
-        <p class="photographe-details-slogan">Voir le beau dans le quotidien</p>
+        <h1 class="photographe-details-nom"></h1>
+        <p class="photographe-details-lieu" lang="en"></p>
+        <p class="photographe-details-slogan"></p>
         <div class="header-nav">
-          <ul>
-            <li class="header-navigation-item">
-              <span class="sr-only" lang="en">Tag travel</span>
-              <a href="#" lang="en">#travel</a>
-            </li>
-            <li class="header-navigation-item">
-              <span class="sr-only" lang="en">Tag portraits</span>
-              <a href="#" lang="en">#portraits</a>
-            </li>
+          <ul class="header-nav-tags">
+            
           </ul>
         </div>        
       </div>
@@ -42,18 +35,18 @@
         <button class="button-contact">Contactez-moi</button>
       </div>
       <div class="photographe-details-img">
-        <img class="photographe-img" src="img/preview_mimikeel.png" alt="">
+        <img class="photographe-img" src="" alt="">
       </div>
     </section>
 
     <aside class="likes_prix">
       <div class="total_likes">
-        <p>200 000</p>
+        <p id="total_likes_p"></p>
         <span>
          <img lang="en" src="img/likes_total.png" alt="likes"> 
         </span> 
       </div>
-      <p>300€ / jour</p>
+      <p id="prix_jour"></p>
     </aside>
 
     <div class="photographe-dropdown">
@@ -73,8 +66,8 @@
     </div>
 
     <div class="portfolio_photographe">
-      <ul>
-        <li>
+      <ul class="portfolio_photographe_medias">
+        <!-- <li>
           <a href="#">
             <img src="FishEye_Photos/Sample_Photos/Mimi/Event_PintoWedding.jpg" alt="">
           </a>
@@ -194,7 +187,7 @@
               </div>
             </div>
           </div>
-        </li>
+        </li> -->
       </ul>
     </div>
   </main>

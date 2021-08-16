@@ -343,6 +343,10 @@ body {
   font-weight: bold;
 }
 
+.media_titre {
+  max-width: 210px;
+}
+
 .media_likes {
   margin-left: 30px;
 }
