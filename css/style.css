@@ -27,6 +27,7 @@ ul {
 
 button {
   border: none;
+  cursor: pointer;
 }
 
 html {
@@ -210,6 +211,7 @@ body {
   font-weight: bold;
   font-size: 18px;
   border: 0px solid transparent;
+  z-index: 50;
 }
 
 .button-contact:hover, .button-contact:focus {
@@ -284,26 +286,28 @@ body {
   position: absolute;
   margin-top: 1px;
   flex-direction: column;
+  align-items: center;
   background: #911C1C;
   width: 170px;
   border-radius: 5px;
-  font-size: 18px;
-  color: #FFFFFF;
-  padding: 15px 0 15px 0;
+  z-index: 50;
 }
 
 .options {
   display: flex;
   flex-direction: column;
-  margin-left: 20px;
+  padding: 15px 0 15px 0;
+  width: 80%;
+  background: #911C1C;
+  font-size: 18px;
+  color: #FFFFFF;
 }
 
-.option1:after, .option2:after {
-  content: "";
-  border-top: 1px white solid;
-  margin: 14px 0 14px -10px;
-  width: 100%;
+.dropdown_separateur {
+  width: 90%;
+  border-top: 1px solid white;
 }
+
 
 /* mise en forme des media dans les portfolio des photographe */
 
@@ -315,6 +319,7 @@ body {
   display: flex;
   justify-content: space-between;
   flex-wrap: wrap;
+  z-index: 10;
 }
 
 .portfolio_photographe li {

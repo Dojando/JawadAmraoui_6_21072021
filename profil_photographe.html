@@ -22,7 +22,7 @@
   <main class="body-main">
     <section class="photographe-details">
       <div class="photographe-details-texte">
-        <h1 class="photographe-details-nom"></h1>
+        <h1 class="photographe-details-nom">Erreur: nom introuvable</h1>
         <p class="photographe-details-lieu" lang="en"></p>
         <p class="photographe-details-slogan"></p>
         <div class="header-nav">
@@ -32,10 +32,10 @@
         </div>        
       </div>
       <div class="photographe-details-contact">
-        <button class="button-contact">Contactez-moi</button>
+        <button class="button-contact" type="button">Contactez-moi</button>
       </div>
       <div class="photographe-details-img">
-        <img class="photographe-img" src="" alt="">
+        <img class="photographe-img" src="#" alt="">
       </div>
     </section>
 
@@ -53,141 +53,23 @@
       <label id="ordre-par">Trier par</label>
 
       <div class="dropdown_box">
-        <button id="custom_dropdown" class="custom_dropdown" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="ordre-par">
-          <span>Popularité</span>
+        <button id="custom_dropdown"  class="custom_dropdown" aria-haspopup="listbox" aria-expanded="false" aria-labelledby="ordre-par">
+          <span id="portfolio_filtre"></span>
           <img id="arrow" class="arrow" src="img/arrow_closed.png" alt="" aria-hidden="true">
         </button>
-        <div id="dropdown_options" class="dropdown_options">
-            <span role="listbox" class="options option1" data-value="popularité">Popularité</span>
-            <span role="listbox" class="options option2" data-value="date">Date</span>
-            <span role="listbox" class="options option3" data-value="titre">Titre</span>
+        <div id="dropdown_options" class="dropdown_options" role="listbox">
+            <button id="option_popularite" role="option" class="options" aria-labelledby="ordre-par" data-value="popularité">Popularité</button>
+            <span class="dropdown_separateur"></span>
+            <button id="option_date" role="option" class="options" aria-labelledby="ordre-par" data-value="date">Date</button>
+            <span class="dropdown_separateur"></span>
+            <button id="option_titre" role="option" class="options" aria-labelledby="ordre-par" data-value="titre">Titre</button>
         </div>
       </div>
     </div>
 
     <div class="portfolio_photographe">
       <ul class="portfolio_photographe_medias">
-        <!-- <li>
-          <a href="#">
-            <img src="FishEye_Photos/Sample_Photos/Mimi/Event_PintoWedding.jpg" alt="">
-          </a>
-          <div class="media_detail">
-            <p class="media_titre">test test</p>
-            <div class="media_prix_likes">
-              <p>45€</p>
-              <div class="media_likes">
-                <p>12</p>
-                <span>
-                  <img src="img/likes.png" alt="likes">
-                </span>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <a href="#">
-            <img src="FishEye_Photos/Sample_Photos/Mimi/Event_SeasideWedding.jpg" alt="">
-          </a>
-          <div class="media_detail">
-            <p class="media_titre">test test</p>
-            <div class="media_prix_likes">
-              <p>45€</p>
-              <div class="media_likes">
-                <p>12</p>
-                <span>
-                  <img src="img/likes.png" alt="likes">
-                </span>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <a href="#">
-            <img src="FishEye_Photos/Sample_Photos/Mimi/Portrait_Background.jpg" alt="">
-          </a>
-          <div class="media_detail">
-            <p class="media_titre">test test</p>
-            <div class="media_prix_likes">
-              <p>45€</p>
-              <div class="media_likes">
-                <p>12</p>
-                <span>
-                  <img src="img/likes.png" alt="likes">
-                </span>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <a href="#">
-            <img src="FishEye_Photos/Sample_Photos/Mimi/Portrait_Nora.jpg" alt="">
-          </a>
-          <div class="media_detail">
-            <p class="media_titre">test test</p>
-            <div class="media_prix_likes">
-              <p>45€</p>
-              <div class="media_likes">
-                <p>12</p>
-                <span>
-                  <img src="img/likes.png" alt="likes">
-                </span>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <a href="#">
-            <img src="FishEye_Photos/Sample_Photos/Mimi/Portrait_Wednesday.jpg" alt="">
-          </a>
-          <div class="media_detail">
-            <p class="media_titre">test test</p>
-            <div class="media_prix_likes">
-              <p>45€</p>
-              <div class="media_likes">
-                <p>12</p>
-                <span>
-                  <img src="img/likes.png" alt="likes">
-                </span>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <a href="#">
-            <img src="FishEye_Photos/Sample_Photos/Mimi/Event_BenevidesWedding.jpg" alt="">
-          </a>
-          <div class="media_detail">
-            <p class="media_titre">test test</p>
-            <div class="media_prix_likes">
-              <p>45€</p>
-              <div class="media_likes">
-                <p>12</p>
-                <span>
-                  <img src="img/likes.png" alt="likes">
-                </span>
-              </div>
-            </div>
-          </div>
-        </li>
-        <li>
-          <a href="#">
-            <video>
-              <source src="FishEye_Photos/Sample_Photos/Mimi/Animals_Wild_Horses_in_the_mountains.mp4" type="video/mp4">
-            </video>
-          </a>
-          <div class="media_detail">
-            <p class="media_titre">test test</p>
-            <div class="media_prix_likes">
-              <p>45€</p>
-              <div class="media_likes">
-                <p>12</p>
-                <span>
-                  <img src="img/likes.png" alt="likes">
-                </span>
-              </div>
-            </div>
-          </div>
-        </li> -->
+
       </ul>
     </div>
   </main>

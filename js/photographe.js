@@ -11,11 +11,16 @@ const photographeImg = document.getElementsByClassName('photographe-img')[0];
 const portfolioMedia = document.getElementsByClassName('portfolio_photographe_medias')[0];
 const totalLikes = document.getElementById("total_likes_p");
 const prixJour = document.getElementById("prix_jour");
+const portfolioFiltre = document.getElementById("portfolio_filtre");
+const optionPopularite = document.getElementById('option_popularite');
+const optionDate = document.getElementById('option_date');
+const optionTitre = document.getElementById('option_titre');
 
 
 let urlSplit = location.href.split('id=');
 let fisheyeData;
 let fisheyeMedia = [];
+let optionList = [optionPopularite, optionTitre, optionDate];
 let likesTotal = 0;
 
 // appel du fichier json fisheyedata
@@ -35,6 +40,14 @@ fetch("../FishEyeData.json")
             fisheyeMedia.push(data.media[n]);
           }
         }
+        // Filtrer les medias du plus liké au moins liké (par défaut) 
+        fisheyeMedia.sort(function(a, b) {
+          return b.likes - a.likes;
+        });
+        portfolioFiltre.textContent = "Popularité";
+        optionPopularite.setAttribute('aria-selected', 'true');
+        optionDate.setAttribute('aria-selected', 'false');
+        optionTitre.setAttribute('aria-selected', 'false');
         affichageProfilPhotographe();
       }
     }
@@ -50,6 +63,7 @@ function affichageProfilPhotographe() {
   prixJour.textContent = fisheyeData.price+"€ / jour";
 
   // affichage dynamique des tags du photographe
+  photographeTags.innerHTML = "";
   for (let i in fisheyeData.tags) {
     photographeTags.innerHTML +=
     `<li class="header-navigation-item">
@@ -60,6 +74,8 @@ function affichageProfilPhotographe() {
   console.log(fisheyeMedia);
   console.log(fisheyeData.name);
 
+  portfolioMedia.innerHTML = "";
+  likesTotal = 0;
   for (let i in fisheyeMedia) {
     // affichage dynamique des photos
     if (fisheyeMedia[i].image != undefined) {
@@ -123,4 +139,66 @@ custom_dropdown.addEventListener('click', function(e) {
     custom_dropdown.setAttribute('aria-expanded', 'false');
   }
 })
+
+// script pour le filtre par date du dropdown
+optionDate.addEventListener('click', function(e) {
+  // Filtrer les medias du plus récent au plus vieux
+  fisheyeMedia.sort(function(a, b) {
+    let da = new Date(a.date);
+    let db = new Date(b.date);
+    return db - da;
+  });
+  portfolioFiltre.textContent = "Date";
+  optionPopularite.setAttribute('aria-selected', 'false');
+  optionDate.setAttribute('aria-selected', 'true');
+  optionTitre.setAttribute('aria-selected', 'false');
+  affichageProfilPhotographe();
+})
+
+// script pour le filtre par titre du dropdown
+optionTitre.addEventListener('click', function(e) {
+  // Filtrer les medias par titre (ordre alphabetique)
+  fisheyeMedia.sort(function(a, b) {
+    let ta = a.title.toLowerCase();
+    let tb = b.title.toLowerCase();
+
+    if (ta < tb) {
+        return -1;
+    }
+    if (ta > tb) {
+        return 1;
+    }
+    return 0;
+  });
+  portfolioFiltre.textContent = "Titre";
+  optionPopularite.setAttribute('aria-selected', 'false');
+  optionDate.setAttribute('aria-selected', 'false');
+  optionTitre.setAttribute('aria-selected', 'true');
+  affichageProfilPhotographe();
+})
+
+// script pour le filtre par popularité du dropdown
+optionPopularite.addEventListener('click', function(e) {
+  // Filtrer les medias du plus liké au moins liké
+  fisheyeMedia.sort(function(a, b) {
+    return b.likes - a.likes;
+  });
+  portfolioFiltre.textContent = "Popularité";
+  optionPopularite.setAttribute('aria-selected', 'true');
+  optionDate.setAttribute('aria-selected', 'false');
+  optionTitre.setAttribute('aria-selected', 'false');
+  affichageProfilPhotographe();
+})
+
+
+// ajout de l'attribut aria-activedescendant pour ARIA
+for (let i in optionList) {
+  optionList[i].addEventListener('focus', function(e) {
+    dropdown_options.setAttribute('aria-activedescendant', `${optionList[i].id}`)
+  });
+  optionList[i].addEventListener('focusout', function(e) {
+    dropdown_options.removeAttribute('aria-activedescendant');
+  })
+}
+
 
