@@ -68,7 +68,7 @@ body {
   text-align: center;
 }
 
-.header-navigation-item a {
+.header-navigation-item a, .tags-item a {
   text-decoration: none;
   color: inherit;
   width: 68px;
@@ -83,6 +83,10 @@ body {
   color: #911C1C;
   margin: 0 3px 0 3px;
   padding: 0 3px 0 3px;
+}
+
+.tags-item a {
+  pointer-events: none;
 }
 
 .header-navigation-item a:hover,
