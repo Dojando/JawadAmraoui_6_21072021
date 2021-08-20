@@ -15,12 +15,16 @@ const portfolioFiltre = document.getElementById("portfolio_filtre");
 const optionPopularite = document.getElementById('option_popularite');
 const optionDate = document.getElementById('option_date');
 const optionTitre = document.getElementById('option_titre');
+const buttonLike = document.getElementsByClassName('button-like');
+const likesValeur = document.getElementsByClassName('likes_valeur');
+
 
 
 let urlSplit = location.href.split('id=');
 let fisheyeData;
 let fisheyeMedia = [];
 let optionList = [optionPopularite, optionTitre, optionDate];
+let mediaId = [];
 let likesTotal = 0;
 
 // appel du fichier json fisheyedata
@@ -66,15 +70,16 @@ function affichageProfilPhotographe() {
   photographeTags.innerHTML = "";
   for (let i in fisheyeData.tags) {
     photographeTags.innerHTML +=
-    `<li class="header-navigation-item">
+    `<li class="tags-item">
       <span class="sr-only" lang="en">Tag ${fisheyeData.tags[i]}</span>
-      <a href="#" lang="en">#${fisheyeData.tags[i]}</a>
+      <a href="" lang="en">#${fisheyeData.tags[i]}</a>
     </li>`
   }
   console.log(fisheyeMedia);
   console.log(fisheyeData.name);
 
   portfolioMedia.innerHTML = "";
+  mediaId = [];
   likesTotal = 0;
   for (let i in fisheyeMedia) {
     // affichage dynamique des photos
@@ -89,10 +94,10 @@ function affichageProfilPhotographe() {
           <div class="media_prix_likes">
             <p>${fisheyeMedia[i].price}€</p>
             <div class="media_likes">
-              <p>${fisheyeMedia[i].likes}</p>
-              <span>
+              <p class="likes_valeur">${fisheyeMedia[i].likes}</p>
+              <button class="button-like">
                 <img src="img/likes.png" alt="likes">
-              </span>
+              </button>
             </div>
           </div>
         </div>
@@ -112,18 +117,36 @@ function affichageProfilPhotographe() {
           <div class="media_prix_likes">
             <p>${fisheyeMedia[i].price}€</p>
             <div class="media_likes">
-              <p>${fisheyeMedia[i].likes}</p>
-              <span>
+              <p class="likes_valeur" id="${fisheyeMedia[i].id}">${fisheyeMedia[i].likes}</p>
+              <button class="button-like">
                 <img src="img/likes.png" alt="likes">
-              </span>
+              </button>
             </div>
           </div>
         </div>
       </li>`
     }
+    mediaId += fisheyeMedia[i].id;
     likesTotal += fisheyeMedia[i].likes;
   }
   totalLikes.textContent = likesTotal;
+  likeMedias();
+}
+
+// script pour 'liké' les medias
+function likeMedias() {
+  for (let i = 0; i < fisheyeMedia.length; i++) {
+    buttonLike[i].addEventListener('click', function(e) {
+      fisheyeMedia[i].likes += 1;
+      likesValeur[i].innerHTML = fisheyeMedia[i].likes;
+      // re-calcul et affichage du nombre total de likes
+      likesTotal = 0;
+      for (y in fisheyeMedia) {
+        likesTotal += fisheyeMedia[y].likes
+      }
+      totalLikes.textContent = likesTotal;
+    })
+  }
 }
 
 // script pour le menu dropdown de la page photographe
@@ -140,8 +163,9 @@ custom_dropdown.addEventListener('click', function(e) {
   }
 })
 
+
 // script pour le filtre par date du dropdown
-optionDate.addEventListener('click', function(e) {
+function filtreDate() {
   // Filtrer les medias du plus récent au plus vieux
   fisheyeMedia.sort(function(a, b) {
     let da = new Date(a.date);
@@ -152,11 +176,13 @@ optionDate.addEventListener('click', function(e) {
   optionPopularite.setAttribute('aria-selected', 'false');
   optionDate.setAttribute('aria-selected', 'true');
   optionTitre.setAttribute('aria-selected', 'false');
+  dropdown_options.style.display = "none";
   affichageProfilPhotographe();
-})
+}
+optionDate.addEventListener('click', filtreDate());
 
 // script pour le filtre par titre du dropdown
-optionTitre.addEventListener('click', function(e) {
+function filtreTitre() {
   // Filtrer les medias par titre (ordre alphabetique)
   fisheyeMedia.sort(function(a, b) {
     let ta = a.title.toLowerCase();
@@ -174,11 +200,13 @@ optionTitre.addEventListener('click', function(e) {
   optionPopularite.setAttribute('aria-selected', 'false');
   optionDate.setAttribute('aria-selected', 'false');
   optionTitre.setAttribute('aria-selected', 'true');
+  dropdown_options.style.display = "none";
   affichageProfilPhotographe();
-})
+}
+optionTitre.addEventListener('click', filtreTitre());
 
 // script pour le filtre par popularité du dropdown
-optionPopularite.addEventListener('click', function(e) {
+function filtrePopularite() {
   // Filtrer les medias du plus liké au moins liké
   fisheyeMedia.sort(function(a, b) {
     return b.likes - a.likes;
@@ -187,8 +215,10 @@ optionPopularite.addEventListener('click', function(e) {
   optionPopularite.setAttribute('aria-selected', 'true');
   optionDate.setAttribute('aria-selected', 'false');
   optionTitre.setAttribute('aria-selected', 'false');
+  dropdown_options.style.display = "none";
   affichageProfilPhotographe();
-})
+}
+optionPopularite.addEventListener('click', filtrePopularite());
 
 
 // ajout de l'attribut aria-activedescendant pour ARIA

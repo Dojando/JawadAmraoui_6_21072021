@@ -5,6 +5,7 @@ const tags = document.querySelectorAll('.header-navigation-item > a');
 
 let fisheyeData;
 let fisheyePhotographers = [];
+let selectedTags = [];
 
 console.log(tags);
 console.log(tags[0].innerText.split('#')[1].toLowerCase());
@@ -17,9 +18,7 @@ fetch("../FishEyeData.json")
   .then(function(data) {
     console.log(data);
     fisheyeData = data;
-    for (let i in fisheyeData.photographers) {
-      fisheyePhotographers.push(fisheyeData.photographers[i])
-    }
+    fisheyePhotographers = fisheyeData.photographers;
     affichagePhotographe();
   })
 
@@ -28,7 +27,6 @@ fetch("../FishEyeData.json")
 function affichagePhotographe() {
   photographeSection.innerHTML = ""
   for (let i in fisheyePhotographers) {
-    console.log(fisheyePhotographers[i])
 
     // recuperation des noms pour identifier les images de profils
     let nomSplit = fisheyePhotographers[i].portrait.split(".");
@@ -54,9 +52,7 @@ function affichagePhotographe() {
 
     // affichage dynamique des tags pour chaques profils
     let tagsList = fisheyePhotographers[i].tags;
-    console.log(tagsList);
     for (let n in tagsList) {
-      console.log(tagsList[n]);
       const photographeTags = document.getElementsByClassName("photographe-tags")[i];
       photographeTags.innerHTML += 
       `<li class="tags-item">
@@ -67,21 +63,39 @@ function affichagePhotographe() {
   }
 }
 
+
+
 // Filtrage des photographes par tag
 for (let i = 0; i < tags.length; i++) {
   tags[i].addEventListener('click', function(e) {
     e.preventDefault();
     fisheyePhotographers = [];
     let selectedTag = tags[i].innerText.split('#')[1].toLowerCase();
-    // si un photographe correspond au tag selectionné, il est ajouté au tableau fisheyePhotographers
+    // ajout et suppression des tags selectionné au tableau selectedTags
+    if (selectedTags.indexOf(selectedTag) === -1) {
+      selectedTags.push(selectedTag);
+      tags[i].classList.add("selectedTag");
+    }
+    else if (selectedTags.indexOf(selectedTag) != -1) {
+      selectedTags.splice(selectedTags.indexOf(selectedTag), 1);
+      tags[i].classList.remove("selectedTag");
+    }
+
+    // si un photographe correspond aux tags selectionnés, il est ajouté au tableau fisheyePhotographers 
     for (let y in fisheyeData.photographers) {
-      for (let n in fisheyeData.photographers[y].tags) {
-        if (selectedTag === fisheyeData.photographers[y].tags[n]) {
-          fisheyePhotographers.push(fisheyeData.photographers[y]);
-          break;
-        }
+      let valid = true;
+      for (let t in selectedTags) {
+        if (fisheyeData.photographers[y].tags.indexOf(selectedTags[t]) === -1) {  
+          valid = false;
+        }   
+      }
+      if (valid === true) {
+        fisheyePhotographers.push(fisheyeData.photographers[y]);
       }
     }
+    console.log(selectedTags);
     affichagePhotographe();
   })
-}
+}  
+
+
