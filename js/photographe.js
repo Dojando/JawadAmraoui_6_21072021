@@ -17,6 +17,13 @@ const optionDate = document.getElementById('option_date');
 const optionTitre = document.getElementById('option_titre');
 const buttonLike = document.getElementsByClassName('button-like');
 const likesValeur = document.getElementsByClassName('likes_valeur');
+const mediasLiens = document.getElementsByClassName('media_lien');
+const lightboxContainer = document.getElementsByClassName('lightbox_container')[0];
+const lightboxMedia = document.getElementsByClassName('lightbox_img')[0];
+const fermerLightbox = document.getElementsByClassName('close_lightbox')[0];
+const mediaPrecedent = document.getElementsByClassName('left_arrow')[0];
+const mediaSuivant = document.getElementsByClassName('right_arrow')[0];
+
 
 
 
@@ -26,6 +33,7 @@ let fisheyeMedia = [];
 let optionList = [optionPopularite, optionTitre, optionDate];
 let mediaId = [];
 let likesTotal = 0;
+let selectedMedia = 0;
 
 // appel du fichier json fisheyedata
 fetch("../FishEyeData.json")
@@ -59,7 +67,7 @@ fetch("../FishEyeData.json")
 
 function affichageProfilPhotographe() {
   console.log(fisheyeData);
-  // ajout dynamique des infos photographe
+  // ajout dynamique des infos du photographe
   photographeNom.textContent = fisheyeData.name;
   photographeLieu.textContent = fisheyeData.city+", "+fisheyeData.country;
   photographeSlogan.textContent = fisheyeData.tagline;
@@ -86,7 +94,7 @@ function affichageProfilPhotographe() {
     if (fisheyeMedia[i].image != undefined) {
       portfolioMedia.innerHTML +=
       `<li>
-        <a href="#">
+        <a id="${fisheyeMedia[i].id}" class="media_lien" href="">
           <img src="FishEye_Photos/Sample_Photos/${fisheyeData.name.split(' ')[0]}/${fisheyeMedia[i].image}" alt="${fisheyeMedia[i].alt}">
         </a>
         <div class="media_detail">
@@ -107,7 +115,7 @@ function affichageProfilPhotographe() {
     if (fisheyeMedia[i].video != undefined) {
       portfolioMedia.innerHTML +=
       `<li>
-        <a href="#">
+        <a id="${fisheyeMedia[i].id}" class="media_lien" href="">
           <video>
             <source src="FishEye_Photos/Sample_Photos/${fisheyeData.name.split(' ')[0]}/${fisheyeMedia[i].video}" type="video/mp4">
           </video>
@@ -131,6 +139,7 @@ function affichageProfilPhotographe() {
   }
   totalLikes.textContent = likesTotal;
   likeMedias();
+  ajoutLightbox()
 }
 
 // script pour 'liké' les medias
@@ -165,7 +174,7 @@ custom_dropdown.addEventListener('click', function(e) {
 
 
 // script pour le filtre par date du dropdown
-function filtreDate() {
+optionDate.addEventListener('click', function filtreDate() {
   // Filtrer les medias du plus récent au plus vieux
   fisheyeMedia.sort(function(a, b) {
     let da = new Date(a.date);
@@ -177,12 +186,11 @@ function filtreDate() {
   optionDate.setAttribute('aria-selected', 'true');
   optionTitre.setAttribute('aria-selected', 'false');
   dropdown_options.style.display = "none";
-  affichageProfilPhotographe();
-}
-optionDate.addEventListener('click', filtreDate());
+  affichageProfilPhotographe();  
+});
 
 // script pour le filtre par titre du dropdown
-function filtreTitre() {
+optionTitre.addEventListener('click', function filtreTitre() {
   // Filtrer les medias par titre (ordre alphabetique)
   fisheyeMedia.sort(function(a, b) {
     let ta = a.title.toLowerCase();
@@ -201,12 +209,11 @@ function filtreTitre() {
   optionDate.setAttribute('aria-selected', 'false');
   optionTitre.setAttribute('aria-selected', 'true');
   dropdown_options.style.display = "none";
-  affichageProfilPhotographe();
-}
-optionTitre.addEventListener('click', filtreTitre());
+  affichageProfilPhotographe();  
+});
 
 // script pour le filtre par popularité du dropdown
-function filtrePopularite() {
+optionPopularite.addEventListener('click', function filtrePopularite() {
   // Filtrer les medias du plus liké au moins liké
   fisheyeMedia.sort(function(a, b) {
     return b.likes - a.likes;
@@ -216,9 +223,8 @@ function filtrePopularite() {
   optionDate.setAttribute('aria-selected', 'false');
   optionTitre.setAttribute('aria-selected', 'false');
   dropdown_options.style.display = "none";
-  affichageProfilPhotographe();
-}
-optionPopularite.addEventListener('click', filtrePopularite());
+  affichageProfilPhotographe();  
+});
 
 
 // ajout de l'attribut aria-activedescendant pour ARIA
@@ -232,3 +238,58 @@ for (let i in optionList) {
 }
 
 
+// fonctionnement de la lightbox
+function ajoutLightbox() {
+  console.log(mediasLiens[0])
+  for (let i = 0; i < mediasLiens.length; i++) {
+    mediasLiens[i].addEventListener('click', function(e) {
+      e.preventDefault();
+      lightboxContainer.style.display = 'flex';
+      // identification du media selectionné puis affichage
+      for (let n = 0; n < fisheyeMedia.length; n++) {
+        if (fisheyeMedia[n].id == mediasLiens[i].id) {
+          selectedMedia = n;
+          console.log(selectedMedia);
+          affichageMediaLightbox(n);
+          break;
+        }
+      }
+    })
+  }
+}
+// affichage du media dans la lightbox
+function affichageMediaLightbox(mediaPosition) {
+  if (fisheyeMedia[mediaPosition].image != undefined) {
+    lightboxMedia.innerHTML = 
+    `<img src="FishEye_Photos/Sample_Photos/${fisheyeData.name.split(' ')[0]}/${fisheyeMedia[mediaPosition].image}" alt="${fisheyeMedia[mediaPosition].alt}">
+    <p>${fisheyeMedia[mediaPosition].title}</p>`
+  }
+  if (fisheyeMedia[mediaPosition].video != undefined) {
+    lightboxMedia.innerHTML = 
+    `<video src="FishEye_Photos/Sample_Photos/${fisheyeData.name.split(' ')[0]}/${fisheyeMedia[mediaPosition].video}" controls></video>
+    <p>${fisheyeMedia[mediaPosition].title}</p>`
+  }
+}
+// fonction pour fermer la lightbox
+fermerLightbox.addEventListener('click', function(e) {
+    selectedMedia = 0;
+    lightboxContainer.style.display = 'none';
+})
+// fonction pour aller au media precedent
+mediaPrecedent.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (selectedMedia > 0) {
+      selectedMedia -= 1;
+      console.log(selectedMedia);
+      affichageMediaLightbox(selectedMedia)
+    }
+})
+// fonction pour aller au media suivant
+mediaSuivant.addEventListener('click', function(e) {
+    e.preventDefault();
+    if (selectedMedia < (fisheyeMedia.length - 1)) {
+      selectedMedia += 1;
+      console.log(selectedMedia);
+      affichageMediaLightbox(selectedMedia)
+    }
+})

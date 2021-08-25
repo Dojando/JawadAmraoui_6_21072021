@@ -19,29 +19,29 @@ fetch("../FishEyeData.json")
     console.log(data);
     fisheyeData = data;
     fisheyePhotographers = fisheyeData.photographers;
-    affichagePhotographe();
+    affichagePhotographe(fisheyePhotographers);
   })
 
 
 // affichage dynamique des photopgraphes
-function affichagePhotographe() {
+function affichagePhotographe(photographersData) {
   photographeSection.innerHTML = ""
-  for (let i in fisheyePhotographers) {
+  for (let i in photographersData) {
 
     // recuperation des noms pour identifier les images de profils
-    let nomSplit = fisheyePhotographers[i].portrait.split(".");
+    let nomSplit = photographersData[i].portrait.split(".");
     let nomComplet = nomSplit[0]+".png";
 
     // affichage dynamique des profils photographe
     photographeSection.innerHTML +=
       `<section class="bloc-photographe">
-        <a class="lien-photographe" href="profil_photographe.html?id=${fisheyePhotographers[i].id}">
+        <a class="lien-photographe" href="profil_photographe.html?id=${photographersData[i].id}">
           <img class="photographe-img" src="img/${nomComplet}" alt="">
-          <h2 class="photographe-nom">${fisheyePhotographers[i].name}</h2>
+          <h2 class="photographe-nom">${photographersData[i].name}</h2>
         </a>
-        <p class="photographe-lieu" lang="en">${fisheyePhotographers[i].city}, ${fisheyePhotographers[i].country}</p>
-        <p class="photographe-slogan">${fisheyePhotographers[i].tagline}</p>
-        <p class="photographe-prix">${fisheyePhotographers[i].price}€/jour</p>
+        <p class="photographe-lieu" lang="en">${photographersData[i].city}, ${photographersData[i].country}</p>
+        <p class="photographe-slogan">${photographersData[i].tagline}</p>
+        <p class="photographe-prix">${photographersData[i].price}€/jour</p>
         <div class="header-nav">
           <ul class="photographe-tags">
             
@@ -51,7 +51,7 @@ function affichagePhotographe() {
     ;
 
     // affichage dynamique des tags pour chaques profils
-    let tagsList = fisheyePhotographers[i].tags;
+    let tagsList = photographersData[i].tags;
     for (let n in tagsList) {
       const photographeTags = document.getElementsByClassName("photographe-tags")[i];
       photographeTags.innerHTML += 
@@ -94,7 +94,7 @@ for (let i = 0; i < tags.length; i++) {
       }
     }
     console.log(selectedTags);
-    affichagePhotographe();
+    affichagePhotographe(fisheyePhotographers);
   })
 }  
 

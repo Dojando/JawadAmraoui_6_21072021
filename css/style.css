@@ -238,7 +238,7 @@ body {
 .likes_prix {
   position: fixed;
   bottom: 0px;
-  right: 80px;
+  right: 100px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -375,6 +375,82 @@ body {
   background-color: white;
 }
 
+/* mise en forme de la lightbox */
+.lightbox_container {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  z-index: 150;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: white;
+  /* background-color: rgba(100, 100, 100, 50%); */
+}
+
+.lightbox {
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 90%;
+  max-width: 1320px;
+  /* background-color: rgba(100, 0, 0, 50%); */
+}
+
+.left_arrow {
+  position: absolute;
+  left: 10px;
+}
+
+.right_arrow {
+  position: absolute;
+  right: 10px;
+}
+
+.close_lightbox {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  background: none;
+}
+
+.close_lightbox {
+  width: 30px;
+}
+
+.close_lightbox img {
+  width: 100%;
+}
+
+.right_arrow, .left_arrow {
+  width: 25px;
+}
+
+.right_arrow img, .left_arrow img {
+  width: 100%;
+}
+
+.lightbox_img {
+  display: flex;
+  flex-direction: column;
+  max-width: 85%;
+}
+
+.lightbox_img img, .lightbox_img video {
+  max-width: 100%;
+  max-height: 800px;
+  border-radius: 5px;
+}
+
+.lightbox_img p {
+  font-weight: normal;
+  font-size: 1.2em;
+  color: #911C1C;
+}
+
 
 /* design responsive */
 
@@ -481,5 +557,15 @@ body {
 
   .photographe-details-slogan {
     font-size: 15px;
+  }
+
+  .close_lightbox {
+    width: 15px;
+    position: absolute;
+    right: 0px;
+  }
+  
+  .right_arrow, .left_arrow {
+    width: 10px;
   }
 }
