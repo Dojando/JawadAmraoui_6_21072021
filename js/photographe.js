@@ -116,6 +116,7 @@ function affichageProfilPhotographe() {
         <a id="${fisheyeMedia[i].id}" class="media_lien" href="">
           <video>
             <source src="FishEye_Photos/Sample_Photos/${fisheyeData.name.split(' ')[0]}/${fisheyeMedia[i].video}" type="video/mp4">
+            <p>${fisheyeMedia[i].alt}</p>
           </video>
         </a>
         <div class="media_detail">
@@ -263,7 +264,9 @@ function affichageMediaLightbox(mediaPosition) {
   }
   if (fisheyeMedia[mediaPosition].video != undefined) {
     lightboxMedia.innerHTML = 
-    `<video src="FishEye_Photos/Sample_Photos/${fisheyeData.name.split(' ')[0]}/${fisheyeMedia[mediaPosition].video}" controls></video>
+    `<video src="FishEye_Photos/Sample_Photos/${fisheyeData.name.split(' ')[0]}/${fisheyeMedia[mediaPosition].video}" controls>
+    <p>${fisheyeMedia[mediaPosition].alt}</p>
+    </video>
     <p>${fisheyeMedia[mediaPosition].title}</p>`
   }
 }
