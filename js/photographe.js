@@ -31,7 +31,6 @@ let urlSplit = location.href.split('id=');
 let fisheyeData;
 let fisheyeMedia = [];
 let optionList = [optionPopularite, optionTitre, optionDate];
-let mediaId = [];
 let likesTotal = 0;
 let selectedMedia = 0;
 
@@ -87,7 +86,6 @@ function affichageProfilPhotographe() {
   console.log(fisheyeData.name);
 
   portfolioMedia.innerHTML = "";
-  mediaId = [];
   likesTotal = 0;
   for (let i in fisheyeMedia) {
     // affichage dynamique des photos
@@ -134,7 +132,6 @@ function affichageProfilPhotographe() {
         </div>
       </li>`
     }
-    mediaId += fisheyeMedia[i].id;
     likesTotal += fisheyeMedia[i].likes;
   }
   totalLikes.textContent = likesTotal;
@@ -145,12 +142,12 @@ function affichageProfilPhotographe() {
 // script pour 'liké' les medias
 function likeMedias() {
   for (let i = 0; i < fisheyeMedia.length; i++) {
-    buttonLike[i].addEventListener('click', function(e) {
+    buttonLike[i].addEventListener('click', function() {
       fisheyeMedia[i].likes += 1;
       likesValeur[i].innerHTML = fisheyeMedia[i].likes;
       // re-calcul et affichage du nombre total de likes
       likesTotal = 0;
-      for (y in fisheyeMedia) {
+      for (let y in fisheyeMedia) {
         likesTotal += fisheyeMedia[y].likes
       }
       totalLikes.textContent = likesTotal;
@@ -159,7 +156,7 @@ function likeMedias() {
 }
 
 // script pour le menu dropdown de la page photographe
-custom_dropdown.addEventListener('click', function(e) {
+custom_dropdown.addEventListener('click', function() {
   if (getComputedStyle(dropdown_options).display == "none") {
     dropdown_options.style.display = "flex";
     arrow.setAttribute('src', 'img/arrow_open.png');
@@ -229,10 +226,10 @@ optionPopularite.addEventListener('click', function filtrePopularite() {
 
 // ajout de l'attribut aria-activedescendant pour ARIA
 for (let i in optionList) {
-  optionList[i].addEventListener('focus', function(e) {
+  optionList[i].addEventListener('focus', function() {
     dropdown_options.setAttribute('aria-activedescendant', `${optionList[i].id}`)
   });
-  optionList[i].addEventListener('focusout', function(e) {
+  optionList[i].addEventListener('focusout', function() {
     dropdown_options.removeAttribute('aria-activedescendant');
   })
 }
@@ -271,7 +268,7 @@ function affichageMediaLightbox(mediaPosition) {
   }
 }
 // fonction pour fermer la lightbox
-fermerLightbox.addEventListener('click', function(e) {
+fermerLightbox.addEventListener('click', function() {
     selectedMedia = 0;
     lightboxContainer.style.display = 'none';
 })

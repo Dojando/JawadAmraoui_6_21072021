@@ -1,5 +1,4 @@
 // Definitions des variables
-const photographeImg = document.getElementsByClassName("photographe-img")[0];
 const photographeSection = document.getElementsByClassName("photographe-section")[0];
 const tags = document.querySelectorAll('.header-navigation-item > a');
 
@@ -36,7 +35,7 @@ function affichagePhotographe(photographersData) {
     photographeSection.innerHTML +=
       `<section class="bloc-photographe">
         <a class="lien-photographe" href="profil_photographe.html?id=${photographersData[i].id}">
-          <img class="photographe-img" src="img/${nomComplet}" alt="">
+          <img class="photographe-img" src="img/${nomComplet}" alt="vignette de ${photographersData[i].name}">
           <h2 class="photographe-nom">${photographersData[i].name}</h2>
         </a>
         <p class="photographe-lieu" lang="en">${photographersData[i].city}, ${photographersData[i].country}</p>
