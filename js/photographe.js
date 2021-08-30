@@ -23,7 +23,10 @@ const lightboxMedia = document.getElementsByClassName('lightbox_img')[0];
 const fermerLightbox = document.getElementsByClassName('close_lightbox')[0];
 const mediaPrecedent = document.getElementsByClassName('left_arrow')[0];
 const mediaSuivant = document.getElementsByClassName('right_arrow')[0];
-
+const buttonContact = document.getElementsByClassName('button-contact')[0];
+const contactContainer = document.getElementsByClassName('contact_container')[0];
+const closeForm = document.getElementsByClassName('close_form')[0];
+const titreContact = document.getElementById('contact');
 
 
 
@@ -72,6 +75,7 @@ function affichageProfilPhotographe() {
   photographeSlogan.textContent = fisheyeData.tagline;
   photographeImg.setAttribute("src", "../img/"+fisheyeData.portrait.split('.')[0]+".png");
   prixJour.textContent = fisheyeData.price+"€ / jour";
+  titreContact.innerHTML = `Contactez-moi<br>${fisheyeData.name}`;
 
   // affichage dynamique des tags du photographe
   photographeTags.innerHTML = "";
@@ -292,4 +296,32 @@ mediaSuivant.addEventListener('click', function(e) {
       console.log(selectedMedia);
       affichageMediaLightbox(selectedMedia)
     }
+})
+
+
+// affichage du formulaire de contact
+buttonContact.addEventListener('click', function() {
+  contactContainer.style.display = "flex";
+})
+// fermeture du formulaire de contact
+closeForm.addEventListener('click', function() {
+  contactContainer.style.display = "none";
+})
+
+const buttonForm = document.getElementsByClassName('button_form')[0];
+const champPrenom = document.getElementById('first');
+const champNom = document.getElementById('first');
+const champEmail = document.getElementById('first');
+const champMessage = document.getElementById('message');
+
+let valeursForm = {};
+
+buttonForm.addEventListener('click', function() {
+  valeursForm = {
+    prenom: champPrenom.value,
+    nom: champNom.value,
+    email: champEmail.value,
+    message: champMessage.value
+  }
+  console.log(valeursForm);
 })
