@@ -273,41 +273,88 @@ function affichageMediaLightbox(mediaPosition) {
     </video>
     <p>${fisheyeMedia[mediaPosition].title}</p>`
   }
+  mediaPrecedent.focus();
 }
 // fonction pour fermer la lightbox
 fermerLightbox.addEventListener('click', function() {
     selectedMedia = 0;
     lightboxContainer.style.display = 'none';
 })
+
+document.addEventListener('keydown', function (event) {
+  if (getComputedStyle(lightboxContainer).display == "flex") {
+    if (event.key === 'Escape') {
+      selectedMedia = 0;
+      lightboxContainer.style.display = 'none';
+    }
+  }
+});
+
 // fonction pour aller au media precedent
 mediaPrecedent.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (selectedMedia > 0) {
-      selectedMedia -= 1;
-      console.log(selectedMedia);
-      affichageMediaLightbox(selectedMedia)
+  e.preventDefault();
+  previousMedia();
+});
+
+document.addEventListener('keydown', function (event) {
+  if (getComputedStyle(lightboxContainer).display == "flex") {
+    if (event.key === 'ArrowLeft') {
+      previousMedia();
     }
-})
+  }
+});
+
+function previousMedia() {
+  if (selectedMedia > 0) {
+    selectedMedia -= 1;
+    console.log(selectedMedia);
+    affichageMediaLightbox(selectedMedia)
+  }
+}
+
 // fonction pour aller au media suivant
 mediaSuivant.addEventListener('click', function(e) {
-    e.preventDefault();
-    if (selectedMedia < (fisheyeMedia.length - 1)) {
-      selectedMedia += 1;
-      console.log(selectedMedia);
-      affichageMediaLightbox(selectedMedia)
-    }
+  e.preventDefault();
+  nextMedia();
 })
+
+document.addEventListener('keydown', function (event) {
+  if (getComputedStyle(lightboxContainer).display == "flex") {
+    if (event.key === 'ArrowRight') {
+      nextMedia();
+    }
+  }
+});
+
+function nextMedia() {
+  if (selectedMedia < (fisheyeMedia.length - 1)) {
+    selectedMedia += 1;
+    console.log(selectedMedia);
+    affichageMediaLightbox(selectedMedia)
+  }
+}
+
 
 
 // affichage du formulaire de contact
 buttonContact.addEventListener('click', function() {
   contactContainer.style.display = "flex";
+  champPrenom.focus();
 })
 // fermeture du formulaire de contact
 closeForm.addEventListener('click', function() {
   contactContainer.style.display = "none";
 })
 
+document.addEventListener('keydown', function (event) {
+  if (getComputedStyle(contactContainer).display == "flex") {
+    if (event.key === 'Escape') {
+      contactContainer.style.display = "none";
+    }
+  }
+});
+
+// recupertion des éléments du formulaire
 const buttonForm = document.getElementsByClassName('button_form')[0];
 const champPrenom = document.getElementById('first');
 const champNom = document.getElementById('first');
@@ -315,7 +362,7 @@ const champEmail = document.getElementById('first');
 const champMessage = document.getElementById('message');
 
 let valeursForm = {};
-
+// envoie des valeurs des champs dans la console
 buttonForm.addEventListener('click', function() {
   valeursForm = {
     prenom: champPrenom.value,
