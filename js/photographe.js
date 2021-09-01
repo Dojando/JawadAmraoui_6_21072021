@@ -24,10 +24,10 @@ const fermerLightbox = document.getElementsByClassName('close_lightbox')[0];
 const mediaPrecedent = document.getElementsByClassName('left_arrow')[0];
 const mediaSuivant = document.getElementsByClassName('right_arrow')[0];
 const buttonContact = document.getElementsByClassName('button-contact')[0];
+const formulaireContact = document.getElementsByClassName('contact_form')[0];
 const contactContainer = document.getElementsByClassName('contact_container')[0];
 const closeForm = document.getElementsByClassName('close_form')[0];
 const titreContact = document.getElementById('contact');
-
 
 
 let urlSplit = location.href.split('id=');
@@ -81,9 +81,9 @@ function affichageProfilPhotographe() {
   photographeTags.innerHTML = "";
   for (let i in fisheyeData.tags) {
     photographeTags.innerHTML +=
-    `<li class="tags-item">
+    `<li tabindex="0" class="tags-item header-navigation-item-a">
+      <span aria-hidden="true">#${fisheyeData.tags[i]}</span>
       <span class="sr-only" lang="en">Tag ${fisheyeData.tags[i]}</span>
-      <a href="" lang="en">#${fisheyeData.tags[i]}</a>
     </li>`
   }
   console.log(fisheyeMedia);
@@ -118,7 +118,7 @@ function affichageProfilPhotographe() {
       portfolioMedia.innerHTML +=
       `<li>
         <a id="${fisheyeMedia[i].id}" class="media_lien" href="">
-          <video>
+          <video aria-label="${fisheyeMedia[i].alt}" aria-describedby="${fisheyeMedia[i].alt}">
             <source src="FishEye_Photos/Sample_Photos/${fisheyeData.name.split(' ')[0]}/${fisheyeMedia[i].video}" type="video/mp4">
             <p>${fisheyeMedia[i].alt}</p>
           </video>
@@ -263,17 +263,18 @@ function ajoutLightbox() {
 function affichageMediaLightbox(mediaPosition) {
   if (fisheyeMedia[mediaPosition].image != undefined) {
     lightboxMedia.innerHTML = 
-    `<img src="FishEye_Photos/Sample_Photos/${fisheyeData.name.split(' ')[0]}/${fisheyeMedia[mediaPosition].image}" alt="${fisheyeMedia[mediaPosition].alt}">
+    `<img class="media_lightbox" tabindex="0" src="FishEye_Photos/Sample_Photos/${fisheyeData.name.split(' ')[0]}/${fisheyeMedia[mediaPosition].image}" alt="${fisheyeMedia[mediaPosition].alt}">
     <p>${fisheyeMedia[mediaPosition].title}</p>`
   }
   if (fisheyeMedia[mediaPosition].video != undefined) {
     lightboxMedia.innerHTML = 
-    `<video src="FishEye_Photos/Sample_Photos/${fisheyeData.name.split(' ')[0]}/${fisheyeMedia[mediaPosition].video}" controls>
+    `<video aria-label="${fisheyeMedia[mediaPosition].alt}" class="media_lightbox" tabindex="0" src="FishEye_Photos/Sample_Photos/${fisheyeData.name.split(' ')[0]}/${fisheyeMedia[mediaPosition].video}" controls>
     <p>${fisheyeMedia[mediaPosition].alt}</p>
     </video>
     <p>${fisheyeMedia[mediaPosition].title}</p>`
   }
-  mediaPrecedent.focus();
+  const mediaLightbox = document.getElementsByClassName('media_lightbox')[0];
+  mediaLightbox.focus();
 }
 // fonction pour fermer la lightbox
 fermerLightbox.addEventListener('click', function() {
@@ -339,7 +340,7 @@ function nextMedia() {
 // affichage du formulaire de contact
 buttonContact.addEventListener('click', function() {
   contactContainer.style.display = "flex";
-  champPrenom.focus();
+  formulaireContact.focus();
 })
 // fermeture du formulaire de contact
 closeForm.addEventListener('click', function() {

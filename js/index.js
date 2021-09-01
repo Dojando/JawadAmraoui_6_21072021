@@ -6,9 +6,6 @@ let fisheyeData;
 let fisheyePhotographers = [];
 let selectedTags = [];
 
-console.log(tags);
-console.log(tags[0].innerText.split('#')[1].toLowerCase());
-
 // appel du fichier json fisheyedata
 fetch("../FishEyeData.json")
   .then(function(res) {
@@ -42,7 +39,7 @@ function affichagePhotographe(photographersData) {
         <p class="photographe-slogan">${photographersData[i].tagline}</p>
         <p class="photographe-prix">${photographersData[i].price}€/jour</p>
         <div class="header-nav">
-          <ul class="photographe-tags">
+          <ul class="photographe-tags" aria-label="tags de ${photographersData[i].name}">
             
           </ul>
         </div>
@@ -54,9 +51,9 @@ function affichagePhotographe(photographersData) {
     for (let n in tagsList) {
       const photographeTags = document.getElementsByClassName("photographe-tags")[i];
       photographeTags.innerHTML += 
-      `<li class="tags-item">
-        <span class="sr-only" lang="en">Tag ${tagsList[n]}</span>
-        <a href="" lang="en">#${tagsList[n]}</a>
+      `<li tabindex="0" class="tags-item header-navigation-item-a">
+          <span aria-hidden="true">#${tagsList[n]}</span>
+          <span class="sr-only" lang="en">Tag ${tagsList[n]}</span>
       </li>`
     }
   }
@@ -69,7 +66,7 @@ for (let i = 0; i < tags.length; i++) {
   tags[i].addEventListener('click', function(e) {
     e.preventDefault();
     fisheyePhotographers = [];
-    let selectedTag = tags[i].innerText.split('#')[1].toLowerCase();
+    let selectedTag = tags[i].firstElementChild.innerText.split('#')[1].toLowerCase();
     // ajout et suppression des tags selectionné au tableau selectedTags
     if (selectedTags.indexOf(selectedTag) === -1) {
       selectedTags.push(selectedTag);
@@ -95,6 +92,4 @@ for (let i = 0; i < tags.length; i++) {
     console.log(selectedTags);
     affichagePhotographe(fisheyePhotographers);
   })
-}  
-
-
+}
