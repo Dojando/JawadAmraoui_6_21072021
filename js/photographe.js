@@ -37,6 +37,7 @@ let optionList = [optionPopularite, optionTitre, optionDate];
 let likesTotal = 0;
 let selectedMedia = 0;
 let url = "../FishEyeData.json";
+let urlImgProfile = "../img/";
 
 // appel du fichier json fisheyedata
 getData();
@@ -45,6 +46,7 @@ function getData() {
     .then(function(res) {
       if (res.ok == false) {
         url = "https://dojando.github.io/JawadAmraoui_6_21072021/FishEyeData.json";
+        urlImgProfile = "https://dojando.github.io/JawadAmraoui_6_21072021/img/";
         getData();
       }
       return res.json();
@@ -82,7 +84,7 @@ function affichageProfilPhotographe() {
   photographeNom.textContent = fisheyeData.name;
   photographeLieu.textContent = fisheyeData.city+", "+fisheyeData.country;
   photographeSlogan.textContent = fisheyeData.tagline;
-  photographeImg.setAttribute("src", "../img/"+fisheyeData.portrait.split('.')[0]+".png");
+  photographeImg.setAttribute("src", urlImgProfile+fisheyeData.portrait.split('.')[0]+".png");
   prixJour.textContent = fisheyeData.price+"€ / jour";
   titreContact.innerHTML = `Contactez-moi<br>${fisheyeData.name}`;
 
