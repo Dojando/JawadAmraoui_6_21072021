@@ -36,36 +36,45 @@ let fisheyeMedia = [];
 let optionList = [optionPopularite, optionTitre, optionDate];
 let likesTotal = 0;
 let selectedMedia = 0;
+let url = "../FishEyeData.json";
 
 // appel du fichier json fisheyedata
-fetch("../FishEyeData.json")
-  .then(function(res) {
-    return res.json();
-  })
-  .then(function(data) {
-    console.log(data);
-    // recuperation des infos du photographe
-    for (let i = 0; i < data.photographers.length; i++) {
-      if (data.photographers[i].id == urlSplit[1]) {
-        fisheyeData = data.photographers[i];
-        // recuperation des medias du photographe
-        for (let n in data.media) {
-          if (data.media[n].photographerId == urlSplit[1]) {
-            fisheyeMedia.push(data.media[n]);
-          }
-        }
-        // Filtrer les medias du plus liké au moins liké (par défaut) 
-        fisheyeMedia.sort(function(a, b) {
-          return b.likes - a.likes;
-        });
-        portfolioFiltre.textContent = "Popularité";
-        optionPopularite.setAttribute('aria-selected', 'true');
-        optionDate.setAttribute('aria-selected', 'false');
-        optionTitre.setAttribute('aria-selected', 'false');
-        affichageProfilPhotographe();
+getData();
+function getData() {
+  fetch(url)
+    .then(function(res) {
+      if (res.ok == false) {
+        url = "https://dojando.github.io/JawadAmraoui_6_21072021/FishEyeData.json";
+        getData();
       }
-    }
-  })
+      return res.json();
+    })
+    .then(function(data) {
+      console.log(data);
+      // recuperation des infos du photographe
+      for (let i = 0; i < data.photographers.length; i++) {
+        if (data.photographers[i].id == urlSplit[1]) {
+          fisheyeData = data.photographers[i];
+          // recuperation des medias du photographe
+          for (let n in data.media) {
+            if (data.media[n].photographerId == urlSplit[1]) {
+              fisheyeMedia.push(data.media[n]);
+            }
+          }
+          // Filtrer les medias du plus liké au moins liké (par défaut) 
+          fisheyeMedia.sort(function(a, b) {
+            return b.likes - a.likes;
+          });
+          portfolioFiltre.textContent = "Popularité";
+          optionPopularite.setAttribute('aria-selected', 'true');
+          optionDate.setAttribute('aria-selected', 'false');
+          optionTitre.setAttribute('aria-selected', 'false');
+          affichageProfilPhotographe();
+        }
+      }
+    })  
+}
+
 
 function affichageProfilPhotographe() {
   console.log(fisheyeData);

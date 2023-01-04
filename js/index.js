@@ -5,18 +5,27 @@ const tags = document.querySelectorAll('.header-navigation-item > a');
 let fisheyeData;
 let fisheyePhotographers = [];
 let selectedTags = [];
+let url = "../FishEyeData.json";
 
 // appel du fichier json fisheyedata
-fetch("../FishEyeData.json")
-  .then(function(res) {
-    return res.json();
-  })
-  .then(function(data) {
-    console.log(data);
-    fisheyeData = data;
-    fisheyePhotographers = fisheyeData.photographers;
-    affichagePhotographe(fisheyePhotographers);
-  })
+getData();
+function getData() {
+  fetch(url)
+    .then(function(res) {
+      if (res.ok == false) {
+        url = "https://dojando.github.io/JawadAmraoui_6_21072021/FishEyeData.json";
+        getData();
+      }
+      return res.json();
+    })
+    .then(function(data) {
+      console.log(data);
+      fisheyeData = data;
+      fisheyePhotographers = fisheyeData.photographers;
+      affichagePhotographe(fisheyePhotographers);
+    })  
+}
+
 
 
 // affichage dynamique des photopgraphes
